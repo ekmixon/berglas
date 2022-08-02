@@ -13,11 +13,9 @@ def f():
     if tls_key_path and os.path.isfile(tls_key_path):
         tls_key = open(tls_key_path, "r").read()
 
-    body = "API_KEY: {}\nTLS_KEY_PATH: {}\nTLS_KEY: {}" \
-        .format(api_key, tls_key_path, tls_key)
+    body = f"API_KEY: {api_key}\nTLS_KEY_PATH: {tls_key_path}\nTLS_KEY: {tls_key}"
 
-    r = Response(response=body, status=200, mimetype="text/plain")
-    return r
+    return Response(response=body, status=200, mimetype="text/plain")
 
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
